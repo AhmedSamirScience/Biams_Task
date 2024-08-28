@@ -1,4 +1,4 @@
-package com.idhcorp.chemist_hv._01_common._04_stateHandling._02_useCase
+package com.samir.baims.common.stateHandling.useCase
 
 sealed class RequestResource<T>(val data: T? = null, val message: String? = null) {
     class Success<T>(data: T?) : RequestResource<T>(data)

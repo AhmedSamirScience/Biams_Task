@@ -9,7 +9,7 @@ import com.samir.baims.BuildConfig
 object Constants {
 
     /** Base URL for API endpoints */
-   // val BASE_URL = if (BuildConfig.FLAVOR.equals("AlBorgLab"))  BuildConfig.BASE_URL_BR else  BuildConfig.BASE_URL_MK
+   // val BASE_URL =
 
     /** Tag used for logging messages related to application lifecycle */
     const val TAG_MESSAGE = "LifeCycleApplication"
