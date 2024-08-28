@@ -30,4 +30,4 @@
  -keep,allowobfuscation,allowshrinking class kotlin.coroutines.Continuation
 
 # you have to use this line to keep the class of your model
--keep class com.idhcorp.chemist_hv._03_data._02_remote._01_dto.** { *; }
+-keep class com._02_remote._01_dto.** { *; }

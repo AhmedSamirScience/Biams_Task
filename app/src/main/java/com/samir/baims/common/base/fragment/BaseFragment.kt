@@ -87,7 +87,6 @@ abstract class BaseFragment<VM : BaseViewModel, VB : ViewDataBinding>() : BackPr
  * @param VM The type of ViewModel associated with the fragment.
  * @param VB The type of ViewDataBinding associated with the fragment's layout.
 
-package com.idhcorp.chemist_hv._01_common._02_base.fragment
 
 import android.os.Bundle
 import android.view.LayoutInflater
