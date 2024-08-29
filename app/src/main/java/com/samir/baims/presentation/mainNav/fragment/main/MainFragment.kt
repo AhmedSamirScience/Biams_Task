@@ -5,7 +5,6 @@ import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
 import android.view.View
-import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
@@ -15,13 +14,13 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.samir.baims.R
 import com.samir.baims.common.base.fragment.BaseFragment
-import com.samir.baims.common.constants.Constants
 import com.samir.baims.common.stateHandling.uI.LiveDataResource
 import com.samir.baims.common.utils.widget.CustomAlertDialog
 import com.samir.baims.databinding.FragmentMainBinding
 import com.samir.baims.domain.model.remote.main.Cities
 import com.samir.baims.presentation.mainNav.fragment.main.adapter.CitesAdapter
 import com.samir.baims.presentation.mainNav.fragment.main.clickEvent.CitiesClickListener
+import com.samir.baims.presentation.mainNav.fragment.weatherList.clickEvent.WeatherClickListener
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 

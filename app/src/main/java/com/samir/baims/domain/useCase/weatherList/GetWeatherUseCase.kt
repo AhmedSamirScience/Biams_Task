@@ -1,11 +1,11 @@
-package com.samir.baims.domain.useCase.main
+package com.samir.baims.domain.useCase.weatherList
 
 import com.samir.baims.R
 import com.samir.baims.common.stateHandling.useCase.RequestResource
-import com.samir.baims.data.remote.dto.main.isDataValid
+import com.samir.baims.data.remote.dto.weather.isDataValid
 import com.samir.baims.di.resourceProvider.ResourceProvider
-import com.samir.baims.domain.mapper.main.CitiesRsMapper
-import com.samir.baims.domain.model.remote.main.Cities
+import com.samir.baims.domain.mapper.weatherList.WeatherRsMapper
+import com.samir.baims.domain.model.remote.weatherList.WeatherList
 import com.samir.baims.domain.repository.remote.MainRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
@@ -16,22 +16,22 @@ import java.io.IOException
 import java.net.SocketTimeoutException
 import javax.inject.Inject
 
-class GetCitiesUseCase @Inject constructor(
+class GetWeatherUseCase @Inject constructor(
     private val repository: MainRepository,
     private val resourceProvider: ResourceProvider
 ) {
-    operator fun invoke(): Flow<RequestResource<Cities>> = flow {
+    operator fun invoke(): Flow<RequestResource<WeatherList>> = flow {
         try {
-                val getCitiesResponseDTO = repository.getCities()
+                val getWeatherResponseDTO = repository.getWeather("31.019512", "30.081949", "66caaefc4b185f9dd2ee7078db081c48")
 
                 val response = withContext(Dispatchers.IO) {
-                    CitiesRsMapper().buildFrom(response = getCitiesResponseDTO)
+                    WeatherRsMapper().buildFrom(response = getWeatherResponseDTO)
                 }
 
-                if (!getCitiesResponseDTO.isDataValid()) {
+                if (!getWeatherResponseDTO.isDataValid()) {
                     emit(RequestResource.Error(message = resourceProvider.getString(R.string.app_error_invalid_data_received)))
                 } else {
-                    emit(RequestResource.Success(Cities(cities = response.cities )))
+                    emit(RequestResource.Success( WeatherList(weatherItem = response.weatherItem)))
                 }
         } catch (e: HttpException) {
            emit(RequestResource.Error(message = resourceProvider.getString(R.string.app_error_http_exception)))

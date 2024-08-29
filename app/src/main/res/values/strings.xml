@@ -64,4 +64,8 @@
     <string name="main_listOfCities" translatable="false">List Of Cities:</string>
     <string name="main_edt" translatable="false">Find the City you\'re looking for</string>
 
+ <!--Main Fragment-->
+    <string name="weather_listOfCities" translatable="false">List Of Weather data:</string>
+
+
 </resources>

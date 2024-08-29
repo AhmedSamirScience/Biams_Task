@@ -3,10 +3,10 @@ package com.samir.baims.presentation.mainNav.fragment.main.adapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.samir.baims.presentation.mainNav.fragment.main.clickEvent.CitiesClickListener
-import com.samir.baims.R
+import com.samir.baims.presentation.mainNav.fragment.weatherList.clickEvent.WeatherClickListener
 import com.samir.baims.databinding.ItemCityBinding
 import com.samir.baims.domain.model.remote.main.Cities
+import com.samir.baims.presentation.mainNav.fragment.main.clickEvent.CitiesClickListener
 
 class CitesAdapter(private var originalList: List<Cities.City> = listOf()) : RecyclerView.Adapter<CitesAdapter.ViewHolder>() {
 

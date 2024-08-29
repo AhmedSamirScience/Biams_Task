@@ -4,10 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
    <!-- <data>
-        <import type="com.idhcorp.chemist_hv._05_presentation._02_home.fragment._01_home.model.VisitInformation" />
-
         <variable
-
             name="myItem"
             type="VisitInformation" />
     </data>-->
