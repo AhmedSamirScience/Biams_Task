@@ -298,6 +298,7 @@ android {
             //don't forget to name VERSION_NAME as the default name to get the version name correctly without writing version name inside build config
             buildConfigField("String", "VERSION_NAME", getVersionNameRelease())
             buildConfigField("String", "BASE_URL", project.extra["BASE_URL_PORD_BAIS"].toString())
+            buildConfigField("String", "BASE_URL_EXTERNAL", project.extra["BASE_URL_EXTERNALS"].toString())
         }
         getByName("debug") {
 
@@ -307,6 +308,7 @@ android {
             //don't forget to name VERSION_NAME as the default name to get the version name correctly without writing version name inside build config
             buildConfigField("String", "VERSION_NAME",  getVersionNameDebug())
             buildConfigField("String", "BASE_URL", project.extra["BASE_URL_TEST_BAIS"].toString())
+            buildConfigField("String", "BASE_URL_EXTERNAL", project.extra["BASE_URL_EXTERNALS"].toString())
         }
     }
 

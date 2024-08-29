@@ -16,5 +16,14 @@
   -->
 <resources>
     <color name="black">#FF000000</color>
-    <color name="white">#FFFFFFFF</color>
+    <color name="black_light">#BF000000</color>
+    <color name="gray_light">#BFBFBFBF</color>
+    <color name="gray_light_opacity_20">#33BFBFBF</color>
+    <color name="gray_dark">#BFACACAC</color>
+    <color name="gray_extra_light">#80EAEAEA</color>
+    <color name="gray_medium_light">#80DFDEDE</color>
+    <color name="white">#FFFFFF</color>
+    <color name="gray">#FFCCCCCC</color>
+    <color name="default_item_color">#FFFFFF</color> <!-- Default color -->
+    <color name="selected_item_color">#BFBFBFBF</color> <!-- Selected color -->
 </resources>

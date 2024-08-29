@@ -9,5 +9,18 @@
         android:id="@+id/mainFragment"
         android:name="com.samir.baims.presentation.mainNav.fragment.main.MainFragment"
         android:label="fragment_main"
-        tools:layout="@layout/fragment_main" />
+        tools:layout="@layout/fragment_main" >
+        <action
+            android:id="@+id/action_mainFragment_to_weatherListFragment"
+            app:destination="@id/weatherListFragment"
+            app:enterAnim="@anim/slide_in_from_right"
+            app:exitAnim="@anim/slide_out_to_left"
+            app:popEnterAnim="@anim/slide_in_from_left"
+            app:popExitAnim="@anim/slide_out_to_right"/>
+    </fragment>
+    <fragment
+        android:id="@+id/weatherListFragment"
+        android:name="com.samir.baims.presentation.mainNav.fragment.weatherList.WeatherListFragment"
+        android:label="fragment_weather_list"
+        tools:layout="@layout/fragment_weather_list" />
 </navigation>
