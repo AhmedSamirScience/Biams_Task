@@ -9,7 +9,9 @@ import com.samir.baims.BuildConfig
 object Constants {
 
     /** Base URL for API endpoints */
-    val BASE_URL =""
+    val BASE_URL ="https://api.openweathermap.org/data/2.5/"
+    const val BASE_URL_EXTERNAL = BuildConfig.BASE_URL_EXTERNAL
+
 
     /** Tag used for logging messages related to application lifecycle */
     const val TAG_MESSAGE = "LifeCycleApplication"

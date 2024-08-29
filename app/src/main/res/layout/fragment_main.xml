@@ -1,22 +1,106 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
-xmlns:app="http://schemas.android.com/apk/res-auto"
-xmlns:tools="http://schemas.android.com/tools"
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     tools:context=".presentation.mainNav.fragment.main.MainFragment">
 
-<androidx.constraintlayout.widget.ConstraintLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-     >
-
-    <TextView
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/swipeRefreshLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center"
-        android:text="Main Fragment"
-        android:textSize="@dimen/_50sdp"/>
+        android:layout_height="wrap_content">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+         <androidx.constraintlayout.widget.ConstraintLayout
+             android:id="@+id/constraintLayout"
+            android:layout_width="match_parent"
+            android:visibility="visible"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:layout_marginTop="@dimen/_10sdp"
+                android:id="@+id/tvBranchesList"
+                style="@style/TextAppearance.MyApp.Medium"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_20sdp"
+
+                android:gravity="center"
+                android:text="@string/main_listOfCities"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_15ssp"
+                android:visibility="visible"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/til_search"
+                style="?attr/textInputLayoutFocusedRectEnabled"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_marginStart="@dimen/_20sdp"
+                android:layout_marginEnd="@dimen/_20sdp"
+
+                android:hint="@string/main_edt"
+                android:textAlignment="viewStart"
+                app:endIconMode="clear_text"
+
+                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvBranchesList">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/edtSearch"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:drawableStart="@drawable/all_ic_search"
+                    android:inputType="text"
+                    android:maxLength="10"
+                    android:background="@drawable/main_selector_edit"
+                    android:drawablePadding="@dimen/_9sdp"
+                    android:textAlignment="viewStart"
+                    android:textSize="@dimen/_13ssp" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+
+                 android:layout_marginStart="@dimen/_30sdp"
+                android:layout_marginEnd="@dimen/_30sdp"
+
+                android:layoutAnimation="@anim/layout_animation"
+
+                android:visibility="visible"
+
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/til_search"
+                tools:layout_editor_absoluteX="-16dp"
+                tools:listitem="@layout/item_city" />
+
+             <TextView
+                android:id="@+id/tvRefresh"
+                 android:visibility="gone"
+                 android:layout_width="match_parent"
+                 android:layout_height="@dimen/_200sdp"
+                 android:gravity="center"
+                 android:textSize="@dimen/_30sdp"
+                 android:text="@string/app_refresh"
+                 app:layout_constraintBottom_toBottomOf="parent"
+                  app:layout_constraintEnd_toEndOf="parent"
+                 app:layout_constraintStart_toStartOf="parent"
+                 app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
 </layout>
 

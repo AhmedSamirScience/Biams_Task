@@ -46,7 +46,7 @@ object NetworkModule {
      */
     @Provides
     @Singleton
-    fun provideAuthApi(client: OkHttpClient): MainApi {
+    fun provideMainApi(client: OkHttpClient): MainApi {
         return Retrofit.Builder()
             .baseUrl(Constants.BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
@@ -59,7 +59,7 @@ object NetworkModule {
      */
     @Provides
     @Singleton
-    fun provideAuthRepository(api: MainApi): MainRepository {
+    fun provideMainRepository(api: MainApi): MainRepository {
         return MainRepositoryImpl(api = api)
     }
     //endregion

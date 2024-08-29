@@ -47,5 +47,21 @@
   *********************************************************
   -->
 
-    <string name="app_name">BAIS</string>
+    <!--Common-->
+    <string name="app_name">Test</string>
+    <string name="app_Loading">Please wait…</string>
+    <string name="app_try_again" translatable="false">Try Again</string>
+    <string name="app_something_went_wrong" translatable="false">Something went wrong, try again</string>
+    <string name="app_error_invalid_data_received" translatable="false">Error detected in the received data. Please try again later.</string>
+    <string name="app_error_http_exception" translatable="false">There was a problem communicating with our servers. Please check your internet connection and try again.</string>
+    <string name="app_error_io_exception" translatable="false">Encountered a network error. Please check your internet connection and try again.</string>
+    <string name="app_error_unexpected_exception" translatable="false">An unexpected error occurred. Please try again later.</string>
+    <string name="app_error_timeout_exception" translatable="false">The request timed out. Please check your internet connection and try again.</string>
+    <string name="app_message_ok" translatable="false">Ok</string>
+    <string name="app_refresh" translatable="false">Please Refresh !!</string>
+
+    <!--Main Fragment-->
+    <string name="main_listOfCities" translatable="false">List Of Cities:</string>
+    <string name="main_edt" translatable="false">Find the City you\'re looking for</string>
+
 </resources>

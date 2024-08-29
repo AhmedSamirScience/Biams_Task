@@ -51,7 +51,7 @@ object CustomAlertDialog {
     }
 
      */
-    /*fun showDialogErrorWithActionButton(act: Context, message: String, firstAction: (() -> Unit)) {
+    fun showDialogErrorWithActionButton(act: Context, message: String, firstAction: (() -> Unit)) {
         val builder = androidx.appcompat.app.AlertDialog.Builder(act, R.style.CustomAlertDialog).create()
         val view = LayoutInflater.from(act).inflate(R.layout.dialoge_error, null)
 
@@ -70,7 +70,25 @@ object CustomAlertDialog {
         builder.setCancelable(false)
 
         builder.show()
-    }*/
+    }
+    fun initAndShowAlertDialog(messageAlert: String, ctx : Context) : androidx.appcompat.app.AlertDialog {
+
+        val builderAlert = androidx.appcompat.app.AlertDialog.Builder(ctx, R.style.CustomAlertDialog).create()
+
+        val view = LayoutInflater.from(ctx).inflate(R.layout.dialog_loading, null)
+        val textMessage = view.findViewById<TextView>(R.id.textView)
+        textMessage.text = messageAlert
+
+        builderAlert.setView(view)
+        builderAlert.setCanceledOnTouchOutside(false)
+        builderAlert.setCancelable(false)
+        if (!builderAlert.isShowing) {
+            builderAlert.show()
+        }
+
+        return builderAlert
+    }
+
 
 
 }
