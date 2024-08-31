@@ -74,7 +74,7 @@ class PreferencesManager(private val sharedPreferences: SharedPreferences) {
 
     //region Saving And Retrieving Objects
     fun <Model> getObject(key: String, modelClass: Class<Model>): Model  {
-        val jsonInStringEncrypted = this.sharedPreferences.getString(key, null)
+        val jsonInStringEncrypted = this.sharedPreferences.getString(key, null) ?: throw IllegalArgumentException("No data found for the given key: $key")
         val gson = Gson()
         return gson.fromJson(EncryptionDecryptionManager().decryptData(data = jsonInStringEncrypted.toString(),keyModelResponse= EncryptionDecryptionManager().createKey() ), modelClass)
     }

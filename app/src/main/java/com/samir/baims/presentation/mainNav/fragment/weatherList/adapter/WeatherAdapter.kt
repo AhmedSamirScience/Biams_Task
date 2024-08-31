@@ -52,10 +52,10 @@ class WeatherAdapter (myList: List<WeatherList.WeatherSingleItem> = listOf()) : 
         fun bind(myItem: WeatherList.WeatherSingleItem?) {
          //  bindingItem.myItem = myItem
 
-           bindingItem.tvCloudValue.text = myItem?.clouds
-           bindingItem.tvHumadityValue.text = myItem?.humidity
-           bindingItem.tvTempratureValue.text = myItem?.temp
-           bindingItem.tvWeatherMainValue.text = myItem?.tempText
+           bindingItem.tvCloudValue.text = myItem?.clouds.toString()
+           bindingItem.tvHumadityValue.text = myItem?.humidity.toString()
+           bindingItem.tvTempratureValue.text = myItem?.temp.toString()
+           bindingItem.tvWeatherMainValue.text = myItem?.tempText.toString()
 
 
 

@@ -7,6 +7,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.samir.baims.R
@@ -25,6 +26,7 @@ import kotlinx.coroutines.launch
 class WeatherListFragment : BaseFragment<WeatherListViewModel, FragmentWeatherListBinding>(), WeatherClickListener {
 
     private var builderAlert: AlertDialog? = null
+    private val args by navArgs<WeatherListFragmentArgs>()
 
     //region initialization
     override fun getContentView(): Int {
@@ -41,11 +43,10 @@ class WeatherListFragment : BaseFragment<WeatherListViewModel, FragmentWeatherLi
         baseViewModel = viewModel
     }
     override fun subscribeLiveData() {
-        getCitiesObserver()
+        getWeatherObserver()
+        getWeatherOfflineObserver()
     }
     override fun initializeViews() {
-
-
         //region SwipeRefreshLayout
         baseViewBinding.swipeRefreshLayout.setColorSchemeResources(
             R.color.black,
@@ -54,16 +55,12 @@ class WeatherListFragment : BaseFragment<WeatherListViewModel, FragmentWeatherLi
         )
         baseViewBinding.swipeRefreshLayout.setOnRefreshListener {
             closeRefreshing()
-
+            baseViewModel?.fetchWeather(lat= args.lat, lon= args.lon, appId= args.appId, countryName= args.countryName)
         }
         //endregion
 
-
-
-
-
-
-
+        baseViewBinding.tvCountryName.text = args.countryName
+        baseViewModel?.fetchWeather(lat= args.lat, lon= args.lon, appId= args.appId, countryName= args.countryName)
 
     }
     private fun closeRefreshing(){
@@ -73,39 +70,76 @@ class WeatherListFragment : BaseFragment<WeatherListViewModel, FragmentWeatherLi
     override fun onClick(v: View?) {}
 
     //region Observers
-    private fun getCitiesObserver() {
+    private fun getWeatherObserver() {
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
-                baseViewModel?.getCitiesStateFlow?.collect { result ->
+                baseViewModel?.getWeatherStateFlow?.collect { result ->
                     when (result) {
                         is LiveDataResource.Success -> {
                             enableAllViews()
                             goneAllViews()
                             builderAlert?.dismiss()
-                            result.data?.let {initWeatherAdapterRecycler(result.data.weatherItem, baseViewBinding.recyclerView)
-                            }
-                            Log.e("AppDone", "Fragment  Success: " )
+                            result.data?.let {initWeatherAdapterRecycler(result.data.weatherItem, baseViewBinding.recyclerView) }
                         }
                         is LiveDataResource.ErrorResponse -> {
                             disableAllViews()
                             visibleAllViews()
-                            CustomAlertDialog.showDialogErrorWithActionButton(requireContext(), result.message.toString()){ }
+                            baseViewModel?.fetchWeatherOffline(countryName= args.countryName)
                             builderAlert?.dismiss()
-                            Log.e("AppDone", "Fragment  ErrorResponse: " )
+
                         }
                         is LiveDataResource.Error -> {
                             disableAllViews()
                             visibleAllViews()
                             builderAlert?.dismiss()
-                            CustomAlertDialog.showDialogErrorWithActionButton(requireContext(), result.message.toString()){ }
-                            Log.e("AppDone", "Fragment  Error: " )
+                            CustomAlertDialog.showDialogErrorWithActionButton(requireContext(), result.message.toString()) {
+                                baseViewModel?.fetchWeatherOffline(countryName= args.countryName)
+                            }
                         }
                         is LiveDataResource.Loading -> {
+                            baseViewBinding.tvWarningWeatherItemList.visibility = View.GONE
                             initWeatherAdapterRecycler(emptyList(), baseViewBinding.recyclerView)
                             disableAllViews()
                             goneAllViews()
-                            Log.e("AppDone", "Fragment  Loading: " )
                             builderAlert = CustomAlertDialog.initAndShowAlertDialog(messageAlert= getString(R.string.app_Loading), ctx= requireContext())
+
+                        }
+                    }
+                }
+            }
+        }
+    }
+    private fun getWeatherOfflineObserver() {
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewLifecycleOwner.lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                baseViewModel?.getWeatherOfflineStateFlow?.collect { result ->
+                    when (result) {
+                        is LiveDataResource.Success -> {
+                            enableAllViews()
+                            goneAllViews()
+                            builderAlert?.dismiss()
+                            baseViewBinding.tvWarningWeatherItemList.visibility = View.VISIBLE
+                            result.data?.let {initWeatherAdapterRecycler(result.data.weatherItem, baseViewBinding.recyclerView)
+                            }
+                        }
+                        is LiveDataResource.ErrorResponse -> {
+                            disableAllViews()
+                            visibleAllViews()
+                            baseViewBinding.tvWarningWeatherItemList.visibility = View.GONE
+                            builderAlert?.dismiss()
+                        }
+                        is LiveDataResource.Error -> {
+                            baseViewBinding.tvWarningWeatherItemList.visibility = View.GONE
+                            disableAllViews()
+                            visibleAllViews()
+                            builderAlert?.dismiss()
+                        }
+                        is LiveDataResource.Loading -> {
+                            baseViewBinding.tvWarningWeatherItemList.visibility = View.GONE
+                            initWeatherAdapterRecycler(emptyList(), baseViewBinding.recyclerView)
+                            disableAllViews()
+                            goneAllViews()
+                            builderAlert?.show()
 
                         }
                     }

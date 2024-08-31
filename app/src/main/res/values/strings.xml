@@ -66,6 +66,7 @@
 
  <!--Main Fragment-->
     <string name="weather_listOfCities" translatable="false">List Of Weather data:</string>
+    <string name="weather_WarningDataFailed" translatable="false">This Data is not up to date !!!</string>
 
 
 </resources>

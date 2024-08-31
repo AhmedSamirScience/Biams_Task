@@ -10,7 +10,9 @@ class CitiesRsMapper {
             cities = response.cities!!.map {
                 Cities.City(
                     cityNameAr = it.cityNameAr ?: "",
-                    cityNameEn = it.cityNameEn ?: ""
+                    cityNameEn = it.cityNameEn ?: "",
+                    lat = it.lat.toString(),
+                    lon = it.lon.toString()
                 )
             }
         )

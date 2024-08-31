@@ -3,180 +3,175 @@ package com.samir.baims.data.remote.dto.weather
 import com.google.gson.annotations.SerializedName
 
 data class WeatherDtoRs(
-   @SerializedName("cod")
-   val cod: String,
+    @SerializedName("cod")
+    val cod: String,
 
-   @SerializedName("message")
-   val message: Long,
+    @SerializedName("message")
+    val message: Int,
 
-   @SerializedName("cnt")
-   val cnt: Long,
+    @SerializedName("cnt")
+    val cnt: Int,
 
     @SerializedName("list")
-   val list: List<ListElement>,
+    val list: List<WeatherData>,
 
-   @SerializedName("city")
-   val city: City
+    @SerializedName("city")
+    val city: City
 )
-{
-   data class City (
-        @SerializedName("id")
-      val id: Long,
 
-     @SerializedName("name")
-      val name: String,
+data class WeatherData(
+    @SerializedName("dt")
+    val dt: Long,
 
-     @SerializedName("coord")
-      val coord: Coord,
+    @SerializedName("main")
+    val main: Main,
 
-     @SerializedName("country")
-      val country: String,
+    @SerializedName("weather")
+    val weather: List<Weather>,
 
-     @SerializedName("population")
-      val population: Long,
+    @SerializedName("clouds")
+    val clouds: Clouds,
 
-        @SerializedName("timezone")
-      val timezone: Long,
+    @SerializedName("wind")
+    val wind: Wind,
 
-        @SerializedName("sunrise")
-      val sunrise: Long,
+    @SerializedName("visibility")
+    val visibility: Int,
 
-        @SerializedName("sunset")
-      val sunset: Long
-   )
-   {
-        data class Coord (
-           @SerializedName("lat")
-           val lat: Double,
+    @SerializedName("pop")
+    val pop: Double,
 
-           @SerializedName("lon")
-           val lon: Double
-        )
+    @SerializedName("sys")
+    val sys: Sys,
 
-   }
+    @SerializedName("dt_txt")
+    val dtTxt: String
+)
 
-   data class ListElement (
+data class Main(
+    @SerializedName("temp")
+    val temp: Double,
 
-         @SerializedName("dt")
-         val dt: Long,
+    @SerializedName("feels_like")
+    val feelsLike: Double,
 
-         @SerializedName("main")
-         val main: MainClass,
+    @SerializedName("temp_min")
+    val tempMin: Double,
 
-         @SerializedName("weather")
-         val weather: List<Weather>,
+    @SerializedName("temp_max")
+    val tempMax: Double,
 
-         @SerializedName("clouds")
-         val clouds: Clouds,
+    @SerializedName("pressure")
+    val pressure: Int,
 
-         @SerializedName("wind")
-         val wind: Wind,
+    @SerializedName("sea_level")
+    val seaLevel: Int,
 
-         @SerializedName("visibility")
-         val visibility: Long,
+    @SerializedName("grnd_level")
+    val grndLevel: Int,
 
-         @SerializedName("pop")
-         val pop: Long,
+    @SerializedName("humidity")
+    val humidity: Int,
 
-         @SerializedName("sys")
-         val sys: Sys,
+    @SerializedName("temp_kf")
+    val tempKf: Double
+)
 
-         @SerializedName("dt_txt")
-         val dtTxt: String
-   )
-   {
+data class Weather(
+    @SerializedName("id")
+    val id: Int,
 
-      enum class Description(val value: String) {
-         @SerializedName("broken clouds") BrokenClouds("broken clouds"),
-         @SerializedName("clear sky") ClearSky("clear sky"),
-         @SerializedName("few clouds") FewClouds("few clouds"),
-         @SerializedName("scattered clouds") ScatteredClouds("scattered clouds");
-      }
+    @SerializedName("main")
+    val main: String,
 
-      data class Wind (
-         @SerializedName("speed")
-         val speed: Double,
+    @SerializedName("description")
+    val description: String,
 
-         @SerializedName("deg")
-         val deg: Long,
+    @SerializedName("icon")
+    val icon: String
+)
 
-         @SerializedName("gust")
-         val gust: Double
-      )
-      enum class MainEnum(val value: String) {
-         @SerializedName("Clear") Clear("Clear"),
-         @SerializedName("Clouds") Clouds("Clouds");
-      }
-      data class Weather (
-            @SerializedName("id")
-            val id: Long,
+data class Clouds(
+    @SerializedName("all")
+    val all: Int
+)
 
-            @SerializedName("main")
-            val main: MainEnum,
+data class Wind(
+    @SerializedName("speed")
+    val speed: Double,
 
-            @SerializedName("description")
-            val description: Description,
+    @SerializedName("deg")
+    val deg: Int,
 
-            @SerializedName("icon")
-            val icon: String
-      )
-      data class Sys (
-         @SerializedName("pod")
-         val pod: Pod
-      )
+    @SerializedName("gust")
+    val gust: Double
+)
 
-      enum class Pod(val value: String) {
-         @SerializedName("d") D("d"),
-         @SerializedName("n") N("n");
-      }
-      data class Clouds (
-         @SerializedName("all")
-         val all: Long
-      )
+data class Sys(
+    @SerializedName("pod")
+    val pod: String
+)
 
-      data class MainClass (
-         @SerializedName("temp")
-         val temp: Double,
+data class City(
+    @SerializedName("id")
+    val id: Int,
 
-         @SerializedName("feels_like")
-         val feelsLike: Double,
+    @SerializedName("name")
+    val name: String,
 
-         @SerializedName("temp_min")
-         val tempMin: Double,
+    @SerializedName("coord")
+    val coord: Coord,
 
-         @SerializedName("temp_max")
-         val tempMax: Double,
+    @SerializedName("country")
+    val country: String,
 
-         @SerializedName("pressure")
-         val pressure: Long,
+    @SerializedName("population")
+    val population: Int,
 
-         @SerializedName("sea_level")
-         val seaLevel: Long,
+    @SerializedName("timezone")
+    val timezone: Int,
 
-         @SerializedName("grnd_level")
-         val grndLevel: Long,
+    @SerializedName("sunrise")
+    val sunrise: Long,
 
-         @SerializedName("humidity")
-         val humidity: Long,
+    @SerializedName("sunset")
+    val sunset: Long
+)
 
-         @SerializedName("temp_kf")
-         val tempKf: Double
-      )
-   }
+data class Coord(
+    @SerializedName("lat")
+    val lat: Double,
 
-}
+    @SerializedName("lon")
+    val lon: Double
+)
 
 
 
 
 
+
+
+
+
+
+/*
 fun WeatherDtoRs.isDataValid(): Boolean {
    return !list.isNullOrEmpty() && list.all { listItem ->
-       listItem.clouds.all != null && listItem.main.humidity != null && listItem.main.temp != null && !listItem.weather.isNullOrEmpty() && listItem.weather.get(0).main != null
+       !listItem.clouds.all.isNullOrEmpty() && !listItem.main.humidity.isNullOrEmpty() && !listItem.main.temp.isNullOrEmpty() && !listItem.weather.isNullOrEmpty() && listItem.weather.get(0).main != null
    }
 }
 
 
+
+
+*/
+
+fun WeatherDtoRs.isDataValid(): Boolean {
+    return !list.isNullOrEmpty() && list.all { listItem ->
+        listItem.clouds.all != null && listItem.main.humidity != null && listItem.main.temp != null && !listItem.weather.isNullOrEmpty() && listItem.weather.get(0).main != null
+    }
+}
 
 
 

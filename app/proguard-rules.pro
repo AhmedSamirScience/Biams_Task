@@ -30,4 +30,11 @@
  -keep,allowobfuscation,allowshrinking class kotlin.coroutines.Continuation
 
 # you have to use this line to keep the class of your model
--keep class com._02_remote._01_dto.** { *; }
+-keep class com.samir.baims.data.remote.dto.** { *; }
+-keep class com.samir.baims.common.encryptionAndDecryptionByKeyStore.** { *; }
+
+# Keep the WeatherList and related classes
+-keep class com.samir.baims.domain.model.remote.weatherList.WeatherList$WeatherSingleItem { *; }
+-keep class com.samir.baims.domain.model.remote.weatherList.WeatherList { *; }
+
+

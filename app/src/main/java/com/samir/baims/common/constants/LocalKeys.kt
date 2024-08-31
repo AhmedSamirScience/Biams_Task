@@ -1,5 +1,5 @@
 package com.samir.baims.common.constants
 
 object LocalKeys {
-    const val LOGIN_RS = "LOGIN_RESPONSE"
+    const val COUNTRY_WEATHER_LIST = "COUNTRY_WEATHER_LIST"
 }

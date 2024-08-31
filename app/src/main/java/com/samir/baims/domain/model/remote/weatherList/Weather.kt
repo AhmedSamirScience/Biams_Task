@@ -3,7 +3,8 @@ package com.samir.baims.domain.model.remote.weatherList
 
 
 data class WeatherList(
-   val weatherItem: List<WeatherSingleItem>
+   val weatherItem: List<WeatherSingleItem>,
+   val countryName: String
 )
 {
    data class WeatherSingleItem(

@@ -7,14 +7,15 @@ class WeatherRsMapper {
     fun buildFrom(response: WeatherDtoRs): WeatherList {
 
         return WeatherList(
-            weatherItem = response.list!!.map {
+            weatherItem = response.list.map {
                 WeatherList.WeatherSingleItem(
                     humidity = it.main.humidity.toString() ,
                     temp = it.main.temp.toString(),
                     tempText =it.weather.get(0).main.toString(),
                     clouds = it.clouds.all.toString()
                 )
-            }
+            },
+            countryName = ""
         )
 
 

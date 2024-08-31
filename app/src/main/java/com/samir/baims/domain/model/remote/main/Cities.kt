@@ -6,7 +6,9 @@ data class Cities(
 {
    data class City(
       val cityNameAr: String,
-      val cityNameEn: String
+      val cityNameEn: String,
+      val lat: String,
+      val lon: String
    )
 }
 

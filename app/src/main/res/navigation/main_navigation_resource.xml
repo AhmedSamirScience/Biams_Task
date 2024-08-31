@@ -22,5 +22,17 @@
         android:id="@+id/weatherListFragment"
         android:name="com.samir.baims.presentation.mainNav.fragment.weatherList.WeatherListFragment"
         android:label="fragment_weather_list"
-        tools:layout="@layout/fragment_weather_list" />
+        tools:layout="@layout/fragment_weather_list" >
+        <argument
+            android:name="lat"
+            app:argType="string" />
+        <argument
+            android:name="lon"
+            app:argType="string" />
+        <argument
+            android:name="appId"
+            app:argType="string" />
+        <argument android:name="countryName"
+            app:argType="string" />
+    </fragment>
 </navigation>

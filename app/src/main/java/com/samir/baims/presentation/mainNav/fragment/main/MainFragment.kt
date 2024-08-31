@@ -14,12 +14,14 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.samir.baims.R
 import com.samir.baims.common.base.fragment.BaseFragment
+import com.samir.baims.common.constants.Constants
 import com.samir.baims.common.stateHandling.uI.LiveDataResource
 import com.samir.baims.common.utils.widget.CustomAlertDialog
 import com.samir.baims.databinding.FragmentMainBinding
 import com.samir.baims.domain.model.remote.main.Cities
 import com.samir.baims.presentation.mainNav.fragment.main.adapter.CitesAdapter
 import com.samir.baims.presentation.mainNav.fragment.main.clickEvent.CitiesClickListener
+import com.samir.baims.presentation.mainNav.fragment.weatherList.WeatherListFragment
 import com.samir.baims.presentation.mainNav.fragment.weatherList.clickEvent.WeatherClickListener
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
@@ -95,27 +97,23 @@ class MainFragment : BaseFragment<MainViewModel, FragmentMainBinding>(), CitiesC
                             goneAllViews()
                             builderAlert?.dismiss()
                             result.data?.let { initCitiesAdapterRecycler(it.cities, baseViewBinding.recyclerView) }
-                            Log.e("AppDone", "Fragment  Success: " )
                         }
                         is LiveDataResource.ErrorResponse -> {
                             disableAllViews()
                             visibleAllViews()
                             CustomAlertDialog.showDialogErrorWithActionButton(requireContext(), result.message.toString()){ }
                             builderAlert?.dismiss()
-                            Log.e("AppDone", "Fragment  ErrorResponse: " )
                         }
                         is LiveDataResource.Error -> {
                             disableAllViews()
                             visibleAllViews()
                             builderAlert?.dismiss()
                             CustomAlertDialog.showDialogErrorWithActionButton(requireContext(), result.message.toString()){ }
-                            Log.e("AppDone", "Fragment  Error: " )
                         }
                         is LiveDataResource.Loading -> {
                             initCitiesAdapterRecycler(emptyList(), baseViewBinding.recyclerView)
                             disableAllViews()
                             goneAllViews()
-                            Log.e("AppDone", "Fragment  Loading: " )
                             builderAlert = CustomAlertDialog.initAndShowAlertDialog(messageAlert= getString(R.string.app_Loading), ctx= requireContext())
 
                         }
@@ -142,7 +140,8 @@ class MainFragment : BaseFragment<MainViewModel, FragmentMainBinding>(), CitiesC
         }
     }
     override fun onItemClicked(itemSelected: Cities.City) {
-        findNavController().navigate(R.id.action_mainFragment_to_weatherListFragment)
+        val action = MainFragmentDirections.actionMainFragmentToWeatherListFragment(lat = itemSelected.lat, lon = itemSelected.lon, appId = Constants.APP_ID, countryName = itemSelected.cityNameEn)
+        findNavController().navigate(action)
     }
     //endregion
 

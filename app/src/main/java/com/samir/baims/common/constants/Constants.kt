@@ -11,6 +11,7 @@ object Constants {
     /** Base URL for API endpoints */
     val BASE_URL =BuildConfig.BASE_URL
     const val BASE_URL_EXTERNAL = BuildConfig.BASE_URL_EXTERNAL
+    const val APP_ID = BuildConfig.APP_ID
 
 
     /** Tag used for logging messages related to application lifecycle */

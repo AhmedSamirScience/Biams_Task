@@ -30,7 +30,6 @@ plugins {
     id(ProjectPlugins.KOTLIN_ANDROID) //plugin to enable Kotlin support in your project.
 
     id(ProjectPlugins.SAFE_ARGS_PROJECT_MODULE)
-
     id(ProjectPlugins.KOTLIN_PARCELIZE)
 
     //dagger hilt
@@ -194,7 +193,7 @@ android {
          */
         versionCode = ProjectConfiguration.VERSION_CODE
 
-
+        versionName ="1.0.0.1"
         /**
          * versionName - string value that represents the user-visible version of your app.
          * It can be any string but is usually based on <major>.<minor>.<point> version format.
@@ -299,6 +298,7 @@ android {
             buildConfigField("String", "VERSION_NAME", getVersionNameRelease())
             buildConfigField("String", "BASE_URL", project.extra["BASE_URL_PORD_BAIS"].toString())
             buildConfigField("String", "BASE_URL_EXTERNAL", project.extra["BASE_URL_EXTERNALS"].toString())
+            buildConfigField("String", "APP_ID", project.extra["APP_ID_BAIS"].toString())
         }
         getByName("debug") {
 
@@ -309,6 +309,7 @@ android {
             buildConfigField("String", "VERSION_NAME",  getVersionNameDebug())
             buildConfigField("String", "BASE_URL", project.extra["BASE_URL_TEST_BAIS"].toString())
             buildConfigField("String", "BASE_URL_EXTERNAL", project.extra["BASE_URL_EXTERNALS"].toString())
+            buildConfigField("String", "APP_ID", project.extra["APP_ID_BAIS"].toString())
         }
     }
 
